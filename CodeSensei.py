@@ -10,7 +10,7 @@ load_dotenv()
 
 # Load Firebase credentials from Streamlit secrets
 firebase_secrets = st.secrets["firebase_credentials"]
-
+gemini_api_key=st.secrets["GEMINI_API_KEY"]
 # Convert TOML secret to JSON format
 cred_dict = {
     "type": firebase_secrets["type"],
@@ -38,7 +38,8 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 # Configure Google Gemini AI
-GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
+# GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
+GOOGLE_API_KEY=gemini_api_key["GOOGLE_API_KEY"]
 gen_ai.configure(api_key=GOOGLE_API_KEY)
 model = gen_ai.GenerativeModel('gemini-1.5-pro')
 
