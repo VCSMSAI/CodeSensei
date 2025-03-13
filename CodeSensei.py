@@ -4,7 +4,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore, auth
 import google.generativeai as gen_ai
 from dotenv import load_dotenv
-from termcolor import colored
+# from termcolor import colored
 # Load environment variables
 load_dotenv()
 
