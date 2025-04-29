@@ -126,7 +126,12 @@ def generate_quiz(chat_history):
     ANSWER: [Correct letter]
     """
 
-    response = model.generate_content([{"text": quiz_prompt}])
+    response = model.generate_content([{"text": quiz_prompt}],generation_config={
+                "temperature": 0.4,
+                "top_k": 40,
+                "top_p": 0.8,
+                "max_output_tokens": 1500
+            })
     quiz_text = response.text if response and response.text else "No quiz generated."
     
     # Parse the quiz response into structured format
@@ -245,7 +250,12 @@ if not st.session_state.quiz_mode:
         full_input = SYSTEM_PROMPT + "\n\n" + chat_context + "\nUser: " + user_prompt
 
         with st.spinner("Thinking... 🤖"):
-            response = model.generate_content([{"text": full_input}])
+            response = model.generate_content([{"text": full_input}],,generation_config={
+                "temperature": 0.4,
+                "top_k": 40,
+                "top_p": 0.8,
+                "max_output_tokens": 1500
+            })
             response_text = response.text if response and response.text else "I'm sorry, I couldn't generate a response."
 
         st.write(f"**CodeSensei:** {response_text}")
