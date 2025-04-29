@@ -250,7 +250,7 @@ if not st.session_state.quiz_mode:
         full_input = SYSTEM_PROMPT + "\n\n" + chat_context + "\nUser: " + user_prompt
 
         with st.spinner("Thinking... 🤖"):
-            response = model.generate_content([{"text": full_input}],,generation_config={
+            response = model.generate_content([{"text": full_input}],generation_config={
                 "temperature": 0.4,
                 "top_k": 40,
                 "top_p": 0.8,
